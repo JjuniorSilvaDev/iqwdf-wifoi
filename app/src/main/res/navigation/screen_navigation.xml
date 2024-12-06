@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screen_navigation"
+    app:startDestination="@id/travelOptionsScreen">
+
+    <fragment
+        android:id="@+id/travelOptionsScreen"
+        android:name="com.teste.appdetaxi.screens.TravelOptionsScreen"
+        android:label="fragment_travel_options_screen"
+        tools:layout="@layout/fragment_travel_options_screen" >
+        <action
+            android:id="@+id/action_travelOptionsScreen_self"
+            app:destination="@id/travelOptionsScreen" />
+        <action
+            android:id="@+id/action_travelOptionsScreen_to_rideRequestScreen"
+            app:destination="@id/rideRequestScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/rideRequestScreen"
+        android:name="com.teste.appdetaxi.screens.RideRequestScreen"
+        android:label="fragment_ride_request_screen"
+        tools:layout="@layout/fragment_ride_request_screen" >
+        <action
+            android:id="@+id/action_rideRequestScreen_to_travelHistoryScreen"
+            app:destination="@id/travelHistoryScreen" />
+        <action
+            android:id="@+id/action_rideRequestScreen_self"
+            app:destination="@id/rideRequestScreen" />
+        <action
+            android:id="@+id/action_rideRequestScreen_to_travelOptionsScreen"
+            app:destination="@id/travelOptionsScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/travelHistoryScreen"
+        android:name="com.teste.appdetaxi.screens.TravelHistoryScreen"
+        android:label="fragment_travel_history_screen"
+        tools:layout="@layout/fragment_travel_history_screen" >
+        <action
+            android:id="@+id/action_travelHistoryScreen_self"
+            app:destination="@id/travelHistoryScreen" />
+        <action
+            android:id="@+id/action_travelHistoryScreen_to_travelOptionsScreen"
+            app:destination="@id/travelOptionsScreen" />
+    </fragment>
+</navigation>
