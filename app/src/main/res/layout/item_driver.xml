@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_gravity="center">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        >
+        <TextView
+            android:id="@+id/driverNameFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do motorista"
+            />
+
+        <TextView
+            android:id="@+id/descriptionFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            />
+        <TextView
+            android:id="@+id/carFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Veículo"
+            />
+
+        <TextView
+            android:id="@+id/rateFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Avaliação"
+            />
+        <TextView
+            android:id="@+id/rideFare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor da viagem"
+            />
+
+        <Button
+            android:id="@+id/chooseDriverButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escolher"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
