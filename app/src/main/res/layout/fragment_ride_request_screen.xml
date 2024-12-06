@@ -3,7 +3,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.RideRequestScreen">
 
+    <TextView
+        android:id="@+id/appTitleFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="App Taxi"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/userIdInputFragment"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/userIdTitleFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Id do Usuário"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@id/userIdInputFragment"
+        app:layout_constraintStart_toStartOf="@id/userIdInputFragment"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/userIdInputFragment"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        android:hint="Digite o id do usuário"
+        app:layout_constraintBottom_toTopOf="@id/startingPointInputFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/startingPointTitleFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Partida de:"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@id/startingPointInputFragment"
+        app:layout_constraintStart_toStartOf="@id/startingPointInputFragment"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/startingPointInputFragment"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Digite o local de partida"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/destinationTitleFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Para:"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@id/destinationInputFragment"
+        app:layout_constraintStart_toStartOf="@id/destinationInputFragment"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/destinationInputFragment"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:hint="Digite o destino"
+        app:layout_constraintTop_toBottomOf="@+id/startingPointInputFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <Button
+        android:id="@+id/buttonSearchRideFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Procurar Corrida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/destinationInputFragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
