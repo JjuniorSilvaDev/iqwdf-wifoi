@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.teste.appdetaxi"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.teste.appdetaxi"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
