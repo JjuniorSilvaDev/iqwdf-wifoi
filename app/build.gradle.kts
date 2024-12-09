@@ -40,6 +40,8 @@ android {
 
 dependencies {
 
+    implementation(libs.gson)
+    implementation(libs.okhttp)
     implementation(libs.osmdroid.android)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

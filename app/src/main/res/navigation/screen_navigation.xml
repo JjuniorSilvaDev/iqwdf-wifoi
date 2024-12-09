@@ -3,33 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/screen_navigation"
-    app:startDestination="@id/rideRequestScreen">
-
+    app:startDestination="@id/rideFormularyScreen">
     <fragment
-        android:id="@+id/travelOptionsScreen"
-        android:name="com.teste.appdetaxi.screens.ChooseDriverScreen"
-        android:label="fragment_travel_options_screen"
-        tools:layout="@layout/fragment_choose_driver_screen" >
-        <action
-            android:id="@+id/action_travelOptionsScreen_self"
-            app:destination="@id/travelOptionsScreen" />
-    </fragment>
-    <fragment
-        android:id="@+id/rideRequestScreen"
+        android:id="@+id/rideFormularyScreen"
         android:name="com.teste.appdetaxi.screens.RideFormularyScreen"
-        android:label="fragment_ride_request_screen"
+        android:label="fragment_ride_formulary_screen"
         tools:layout="@layout/fragment_ride_formulary_screen" >
         <action
-            android:id="@+id/action_rideRequestScreen_self"
-            app:destination="@id/rideRequestScreen" />
+            android:id="@+id/action_rideFormularyScreen_self"
+            app:destination="@id/rideFormularyScreen" />
+        <action
+            android:id="@+id/action_rideFormularyScreen_to_chooseDriverScreen"
+            app:destination="@id/chooseDriverScreen" />
+        <action
+            android:id="@+id/action_rideFormularyScreen_to_travelHistoryScreen"
+            app:destination="@id/travelHistoryScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseDriverScreen"
+        android:name="com.teste.appdetaxi.screens.ChooseDriverScreen"
+        android:label="ChooseDriverScreen" >
+        <action
+            android:id="@+id/action_chooseDriverScreen_self"
+            app:destination="@id/chooseDriverScreen" />
+        <action
+            android:id="@+id/action_chooseDriverScreen_to_rideFormularyScreen"
+            app:destination="@id/rideFormularyScreen" />
+        <action
+            android:id="@+id/action_chooseDriverScreen_to_travelHistoryScreen"
+            app:destination="@id/travelHistoryScreen" />
     </fragment>
     <fragment
         android:id="@+id/travelHistoryScreen"
         android:name="com.teste.appdetaxi.screens.TravelHistoryScreen"
-        android:label="fragment_travel_history_screen"
-        tools:layout="@layout/fragment_travel_history_screen" >
+        android:label="TravelHistoryScreen" >
         <action
             android:id="@+id/action_travelHistoryScreen_self"
             app:destination="@id/travelHistoryScreen" />
+        <action
+            android:id="@+id/action_travelHistoryScreen_to_rideFormularyScreen"
+            app:destination="@id/rideFormularyScreen" />
     </fragment>
 </navigation>
