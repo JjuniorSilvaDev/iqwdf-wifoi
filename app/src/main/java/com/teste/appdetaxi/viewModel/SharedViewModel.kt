@@ -22,11 +22,11 @@ class SharedViewModel : ViewModel() {
     private val _duration = MutableLiveData<String?>()
     val duration: MutableLiveData<String?> = _duration
 
-    private val _options = MutableLiveData<List<Option>?>()
-    val options: MutableLiveData<List<Option>?> = _options
-
     private val _routeResponse = MutableLiveData<Any?>()
     val routeResponse: MutableLiveData<Any?> = _routeResponse
+
+    private val _option = MutableLiveData<List<Option>?>()
+    val option: MutableLiveData<List<Option>?> = _option
 
     fun setUserId(userId: String?) {
         _userId.value = userId
@@ -48,12 +48,12 @@ class SharedViewModel : ViewModel() {
         _duration.value = duration
     }
 
-    fun setOptions(list: List<Option>?) {
-        _options.value = list
-    }
-
     fun setRouteResponse(any: Any?) {
         _routeResponse.value = any
+    }
+
+    fun setOption(list: List<Option>?) {
+        _option.value = list
     }
 
 }

@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.teste.appdetaxi.MainActivity
+import com.teste.appdetaxi.adapter.AdapterDriver
 import com.teste.appdetaxi.databinding.FragmentChooseDriverScreenBinding
 import com.teste.appdetaxi.model.Location
 import com.teste.appdetaxi.viewModel.SharedViewModel
@@ -43,15 +45,32 @@ class ChooseDriverScreen : Fragment() {
     ): View {
         _binding = FragmentChooseDriverScreenBinding.inflate(inflater, container, false)
 
-        prepareMap()
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        prepareRecyclerView()
+
+        prepareMap()
+
         fetchRoute()
+
+    }
+
+    private fun prepareRecyclerView() {
+        sharedViewModel.option.value
+        sharedViewModel.option.observe(viewLifecycleOwner) { listOfDrivers ->
+            if (!listOfDrivers.isNullOrEmpty()) {
+                val recyclerView = binding.recyclerViewChooseDriverFragment
+                recyclerView.layoutManager = LinearLayoutManager(context)
+                recyclerView.setHasFixedSize(true)
+                val adapterDriver = AdapterDriver(requireContext(), listOfDrivers, sharedViewModel)
+                recyclerView.adapter = adapterDriver
+            }
+        }
+
 
     }
 

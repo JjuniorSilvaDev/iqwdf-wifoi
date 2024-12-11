@@ -1,6 +1,5 @@
 package com.teste.appdetaxi.screens
 
-import android.location.Geocoder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,13 +15,11 @@ import com.teste.appdetaxi.api.ApiService
 import com.teste.appdetaxi.databinding.FragmentRideFormularyScreenBinding
 import com.teste.appdetaxi.model.EstimateRequest
 import com.teste.appdetaxi.model.EstimateResponse
-import com.teste.appdetaxi.model.Location
 import com.teste.appdetaxi.network.RetrofitClient
 import com.teste.appdetaxi.viewModel.SharedViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Locale
 
 class RideFormularyScreen : Fragment() {
 
@@ -146,7 +143,6 @@ class RideFormularyScreen : Fragment() {
             }
 
             override fun onFailure(call: Call<EstimateResponse>, t: Throwable) {
-                // Caso haja falha na chamada (ex: sem conexão)
                 Toast.makeText(context, "Falha na requisição: ${t.message}", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -154,20 +150,6 @@ class RideFormularyScreen : Fragment() {
 
     }
 
-//    private fun checkOnGeoCoder() {
-//        val geocoder = Geocoder(requireContext(), Locale.getDefault())
-//        val originAddress = originPoint
-//        val destinationAddress = destinationPoint
-//
-//        try {
-//            val addresses = geocoder.getFromLocationName(originAddress.toString(),1)
-//            if (addresses.isNullOrEmpty()) {
-//                val location = addresses?.get(0)?.let { Location(latitude = it.latitude, longitude = addresses[0].longitude) }
-//            }
-//        }catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//    }
 
     private fun saveInformation(estimateResponse: EstimateResponse?) {
         val textId = String.format("${binding.customerIdInputFragment.text}")
@@ -176,8 +158,9 @@ class RideFormularyScreen : Fragment() {
         sharedViewModel.setOrigin(estimateResponse?.origin)
         sharedViewModel.setDistance(estimateResponse?.distance)
         sharedViewModel.setDuration(estimateResponse?.duration)
-        sharedViewModel.setOptions(estimateResponse?.options)
+        sharedViewModel.setOption(estimateResponse?.options)
         sharedViewModel.setRouteResponse(estimateResponse?.routeResponse)
+
         (context as MainActivity).callHideLoadScreen()
         (context as MainActivity).callTransactionToChooseDriver()
     }
