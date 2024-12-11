@@ -30,7 +30,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/userIdInputFragment"
+        app:layout_constraintBottom_toTopOf="@id/customer_id_input_fragment"
         app:layout_constraintStart_toStartOf="parent"
         />
 
@@ -43,17 +43,17 @@
         android:textSize="12sp"
         android:textColor="@color/black"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@id/userIdInputFragment"
-        app:layout_constraintStart_toStartOf="@id/userIdInputFragment"
+        app:layout_constraintBottom_toTopOf="@id/customer_id_input_fragment"
+        app:layout_constraintStart_toStartOf="@id/customer_id_input_fragment"
         />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/userIdInputFragment"
+        android:id="@+id/customer_id_input_fragment"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
         android:hint="Digite o seu id"
-        app:layout_constraintBottom_toTopOf="@id/startingPointInputFragment"
+        app:layout_constraintBottom_toTopOf="@id/start_point_input_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -62,16 +62,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="Partida de:"
+        android:text="Digite o local de partida"
         android:textSize="12sp"
         android:textColor="@color/black"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@id/startingPointInputFragment"
-        app:layout_constraintStart_toStartOf="@id/startingPointInputFragment"
+        app:layout_constraintBottom_toTopOf="@id/start_point_input_fragment"
+        app:layout_constraintStart_toStartOf="@id/start_point_input_fragment"
         />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/startingPointInputFragment"
+        android:id="@+id/start_point_input_fragment"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:hint="Digite o local de partida"
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="Para:"
+        android:text="Digite o destino"
         android:textSize="12sp"
         android:textColor="@color/black"
         android:textStyle="italic"
@@ -100,7 +100,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:hint="Digite o destino"
-        app:layout_constraintTop_toBottomOf="@+id/startingPointInputFragment"
+        app:layout_constraintTop_toBottomOf="@+id/start_point_input_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />

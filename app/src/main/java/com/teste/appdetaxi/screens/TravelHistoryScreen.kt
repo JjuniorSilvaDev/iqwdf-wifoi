@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.teste.appdetaxi.R
+import androidx.fragment.app.activityViewModels
 import com.teste.appdetaxi.databinding.FragmentTravelHistoryScreenBinding
+import com.teste.appdetaxi.viewModel.SharedViewModel
 
 class TravelHistoryScreen : Fragment() {
 
     private var _binding: FragmentTravelHistoryScreenBinding? = null
     private val binding get() = _binding!!
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

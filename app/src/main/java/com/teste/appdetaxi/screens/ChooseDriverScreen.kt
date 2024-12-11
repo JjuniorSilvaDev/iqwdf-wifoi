@@ -7,7 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import com.teste.appdetaxi.MainActivity
 import com.teste.appdetaxi.databinding.FragmentChooseDriverScreenBinding
+import com.teste.appdetaxi.model.Location
+import com.teste.appdetaxi.viewModel.SharedViewModel
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
@@ -27,6 +31,10 @@ class ChooseDriverScreen : Fragment() {
     private var _binding: FragmentChooseDriverScreenBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var origin: Location
+    private lateinit var destination: Location
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
     private lateinit var mapView: MapView
 
     override fun onCreateView(
@@ -35,7 +43,7 @@ class ChooseDriverScreen : Fragment() {
     ): View {
         _binding = FragmentChooseDriverScreenBinding.inflate(inflater, container, false)
 
-
+        prepareMap()
 
         return binding.root
     }
@@ -43,19 +51,36 @@ class ChooseDriverScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fetchRoute()
+
+    }
+
+    private fun prepareMap() {
         val ctx = requireContext().applicationContext
         Configuration.getInstance().userAgentValue = ctx.packageName
 
-        // Configuração do mapa
+        origin = sharedViewModel.origin.value ?: Location(0.0,0.0)
+        destination = sharedViewModel.destination.value ?: Location(0.0,0.0)
+
+        val minLatitude = minOf(origin.latitude, destination.latitude)
+        val maxLatitude = maxOf(origin.latitude, destination.latitude)
+        val minLongitude = minOf(origin.longitude, destination.longitude)
+        val maxLongitude = maxOf(origin.longitude, destination.longitude)
+
+        val margin = 0.05
+        val boundingBox = org.osmdroid.util.BoundingBox(
+            maxLatitude + margin,
+            maxLongitude + margin,
+            minLatitude - margin,
+            minLongitude - margin
+        )
+
         Configuration.getInstance().userAgentValue = requireContext().packageName
         mapView = binding.mapTravelOptionsFragment
         mapView.setTileSource(TileSourceFactory.MAPNIK)
-        mapView.controller.setZoom(15.0)
-        mapView.controller.setCenter(GeoPoint(-23.55052, -46.633308))
-
-        // Buscar e exibir rota
-        fetchRoute()
-
+        mapView.post {
+            mapView.zoomToBoundingBox(boundingBox,false)
+        }
     }
 
     override fun onDestroyView() {
@@ -64,7 +89,8 @@ class ChooseDriverScreen : Fragment() {
     }
 
     private fun fetchRoute() {
-        val url = "https://router.project-osrm.org/route/v1/driving/-46.633308,-23.55052;-46.625290,-23.559616"
+        val url = String.format("https://router.project-osrm.org/route/v1/driving/"+
+                "${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}")
 
         val client = OkHttpClient()
         val request = Request.Builder()
@@ -157,8 +183,8 @@ class ChooseDriverScreen : Fragment() {
     }
 
     private fun drawRouteOnMap(points: List<GeoPoint>) {
-        val startPoint = GeoPoint(-23.55052, -46.633308) // Ponto A
-        val endPoint = GeoPoint(-23.559616, -46.625290) // Ponto B
+        val startPoint = GeoPoint(origin.latitude, origin.longitude)
+        val endPoint = GeoPoint(destination.latitude, destination.longitude)
 
         // Marcador inicial
         val markerStart = Marker(mapView).apply {
@@ -185,6 +211,12 @@ class ChooseDriverScreen : Fragment() {
 
         mapView.overlays.add(roadOverlay)
         mapView.invalidate() // Atualizar mapa
+
+        (context as MainActivity).callHideLoadScreen()
+    }
+
+    interface ChooseDriverToMainActivityInteraction {
+        fun callHideLoadScreen()
     }
 }
 
