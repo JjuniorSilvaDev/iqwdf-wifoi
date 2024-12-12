@@ -4,22 +4,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.teste.appdetaxi.databinding.ActivityMainBinding
-import com.teste.appdetaxi.screens.ChooseDriverScreen
+import com.teste.appdetaxi.screens.SelectDriverScreen
 import com.teste.appdetaxi.screens.RideFormularyScreen
-import com.teste.appdetaxi.viewModel.SharedViewModel
 
 class MainActivity : AppCompatActivity(),
     RideFormularyScreen.RideFormularyToMainActivityInteraction,
-    ChooseDriverScreen.ChooseDriverToMainActivityInteraction {
+    SelectDriverScreen.ChooseDriverToMainActivityInteraction {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navHostFragment: FragmentContainerView
@@ -27,7 +22,9 @@ class MainActivity : AppCompatActivity(),
     private lateinit var screenLoad: View
     private lateinit var loadProgressBar: ProgressBar
     private lateinit var waitMessage: TextView
-    private val sharedViewModel: SharedViewModel by viewModels()
+    private lateinit var loadingMessageBackground: View
+    private lateinit var homeButton: View
+    private lateinit var historyButton: View
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +33,8 @@ class MainActivity : AppCompatActivity(),
         setContentView(binding.root)
 
         prepareBinding()
+
+        prepareCallbackButton()
 
         inflateItems()
 
@@ -47,6 +46,9 @@ class MainActivity : AppCompatActivity(),
             screenLoad = screenLoadFragment
             loadProgressBar = loadProgressBarFragment
             waitMessage = waitMessageFragment
+            loadingMessageBackground = loadingMessageBackgroundFragment
+            homeButton = homeButtonActivity
+            historyButton = historyButtonActivity
         }
     }
 
@@ -54,18 +56,82 @@ class MainActivity : AppCompatActivity(),
         screenLoad.setOnClickListener {
 
         }
+
+        homeButton.setOnClickListener {
+            goToHome()
+        }
+
+        historyButton.setOnClickListener {
+            goToHistory()
+        }
+    }
+
+    private fun prepareCallbackButton() {
+        val callback = object  : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (pageName != "Ride Formulary") {
+                    goToHome()
+                } else {
+                    finish()
+                }
+            }
+
+        }
+        this.onBackPressedDispatcher.addCallback(this,callback)
+    }
+
+    private fun goToHome() {
+
+        when (pageName) {
+
+            "Ride Formulary" -> {
+                rideFormularySelf()
+            }
+
+            "Choose Driver" -> {
+                chooseDriverToRideFormulary()
+            }
+
+            "Travel History" -> {
+                travelHistoryToRideFormulary()
+            }
+
+        }
+
+    }
+
+    private fun goToHistory() {
+
+        when (pageName) {
+
+            "Ride Formulary" -> {
+                rideFormularyToTravelHistory()
+            }
+
+            "Choose Driver" -> {
+                chooseDriverToTravelHistory()
+            }
+
+            "Travel History" -> {
+                travelHistorySelf()
+            }
+
+        }
+
     }
 
     private fun showLoadScreen() {
         screenLoad.visibility = View.VISIBLE
         loadProgressBar.visibility = View.VISIBLE
         waitMessage.visibility = View.VISIBLE
+        loadingMessageBackground.visibility = View.VISIBLE
     }
 
     private fun hideLoadScreen() {
         screenLoad.visibility = View.INVISIBLE
         loadProgressBar.visibility = View.INVISIBLE
         waitMessage.visibility = View.INVISIBLE
+        loadingMessageBackground.visibility = View.INVISIBLE
     }
 
     private fun rideFormularySelf() {
@@ -87,11 +153,6 @@ class MainActivity : AppCompatActivity(),
             .navigate(R.id.action_rideFormularyScreen_to_travelHistoryScreen)
     }
 
-    private fun chooseDriverSelf() {
-        navHostFragment.findNavController()
-            .navigate(R.id.action_chooseDriverScreen_self)
-    }
-
     private fun chooseDriverToRideFormulary() {
         pageName = "Ride Formulary"
 
@@ -99,7 +160,7 @@ class MainActivity : AppCompatActivity(),
             .navigate(R.id.action_chooseDriverScreen_to_rideFormularyScreen)
     }
 
-    private fun chooseDriverTravelHistory() {
+    private fun chooseDriverToTravelHistory() {
         pageName = "Travel History"
 
         navHostFragment.findNavController()
@@ -124,6 +185,10 @@ class MainActivity : AppCompatActivity(),
 
     override fun callHideLoadScreen() {
         hideLoadScreen()
+    }
+
+    override fun callTransactionToTravelHistory() {
+        chooseDriverToTravelHistory()
     }
 
     override fun callShowLoadScreen() {

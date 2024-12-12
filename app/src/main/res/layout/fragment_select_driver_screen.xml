@@ -10,15 +10,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".screens.ChooseDriverScreen">
+    tools:context=".screens.SelectDriverScreen">
 
     <TextView
         android:id="@+id/travelOptionsTitleFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirme a sua corrida"
+        android:text="@string/confirm_your_race"
         android:layout_marginTop="20dp"
-        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

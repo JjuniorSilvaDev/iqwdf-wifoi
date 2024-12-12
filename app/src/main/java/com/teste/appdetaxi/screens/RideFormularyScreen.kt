@@ -66,26 +66,31 @@ class RideFormularyScreen : Fragment() {
 
     private fun checkRideInformation() {
 
-        var connectWithEndPoint = false
+        var connectToEndPoint = false
+        var hideLoadScreen = false
 
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Olá usuário ${customerIdInput.text}")
+        builder.setTitle("Olá ${customerIdInput.text}")
 
         when {
             customerIdInput.text.isNullOrBlank() -> {
                 builder.setMessage("Erro, por favor preencha o campo 'Id do usuário'")
+                hideLoadScreen = true
             }
 
             originPoint.text.isNullOrBlank() -> {
                 builder.setMessage("Erro, por favor preencha o campo 'Digite o local de partida'")
+                hideLoadScreen = true
             }
 
             destinationPoint.text.isNullOrBlank() -> {
                 builder.setMessage("Erro, por favor preencha o campo 'Digite o destino'")
+                hideLoadScreen = true
             }
 
             originPoint.text.toString() == destinationPoint.text.toString() -> {
                 builder.setMessage("Erro, o endereço de destino deve ser diferente do endereço de origem")
+                hideLoadScreen = true
             }
 
             originPoint.text.toString() == "Av. Pres. Kenedy, 2385 - Remédios, Osasco - SP, 02675-031" &&
@@ -95,18 +100,22 @@ class RideFormularyScreen : Fragment() {
                     originPoint.text.toString() == "Av. Brasil, 2033 - Jardim America, São Paulo - SP, 01431-001" &&
                     destinationPoint.text.toString() == "Av. Paulista, 1538 - Bela Vista, São Paulo - SP, 01310-200" -> {
                 builder.setMessage("Estamos traçando a rota e encontrando motoristas, por favor aguarde.")
-                connectWithEndPoint = true
+                connectToEndPoint = true
             }
 
             else -> {
                 builder.setMessage("No momento não há motoristas disponíveis pra essa rota.")
+                hideLoadScreen = true
             }
         }
 
         builder.setPositiveButton("OK") { dialog, _ ->
             dialog.dismiss()
-            if (connectWithEndPoint) {
-                connectWithEndPoint()
+            if (connectToEndPoint) {
+                connectToEndPoint()
+            }
+            if (hideLoadScreen) {
+                (context as MainActivity).callHideLoadScreen()
             }
         }
         builder.setCancelable(false)
@@ -114,7 +123,7 @@ class RideFormularyScreen : Fragment() {
         alertDialog.show()
     }
 
-    private fun connectWithEndPoint() {
+    private fun connectToEndPoint() {
 
         apiService = RetrofitClient.instance
 
@@ -153,13 +162,20 @@ class RideFormularyScreen : Fragment() {
 
     private fun saveInformation(estimateResponse: EstimateResponse?) {
         val textId = String.format("${binding.customerIdInputFragment.text}")
+        val originName = binding.startPointInputFragment.text.toString()
+        val destinationName = binding.destinationInputFragment.text.toString()
+
         sharedViewModel.setUserId(textId)
-        sharedViewModel.setDestination(estimateResponse?.destination)
-        sharedViewModel.setOrigin(estimateResponse?.origin)
+        sharedViewModel.setOrigin(originName)
+        sharedViewModel.setDestination(destinationName)
+        sharedViewModel.setDestinationCoordinate(estimateResponse?.destination)
+        sharedViewModel.setOriginCoordinate(estimateResponse?.origin)
         sharedViewModel.setDistance(estimateResponse?.distance)
         sharedViewModel.setDuration(estimateResponse?.duration)
         sharedViewModel.setOption(estimateResponse?.options)
         sharedViewModel.setRouteResponse(estimateResponse?.routeResponse)
+
+        estimateResponse?.options
 
         (context as MainActivity).callHideLoadScreen()
         (context as MainActivity).callTransactionToChooseDriver()

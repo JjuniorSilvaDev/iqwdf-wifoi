@@ -1,5 +1,35 @@
 <resources>
     <string name="app_name">App de Taxi</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loading">Carregando...</string>
+    <string name="confirm_your_race">Confirme a sua corrida</string>
+    <string name="enter_user_information">Insira seus dados</string>
+    <string name="enter_user_id_title">Id do Usuário</string>
+    <string name="enter_user_id_input_text">Digite o seu id</string>
+    <string name="enter_origin_title">Digite o local de partida</string>
+    <string name="enter_origin_input_text">Digite o local de partida</string>
+    <string name="enter_destination_title">Digite o destino</string>
+    <string name="enter_destination_input_text">Digite o destino</string>
+    <string name="search_ride_button_text">Procurar Corrida</string>
+    <string name="travel_history_page_title">Histórico de Corridas</string>
+    <string name="search_travel_history_button_text">Buscar</string>
+    <string name="driver_name">Nome do motorista</string>
+    <string name="driver_description">Description</string>
+    <string name="driver_rate">Avaliação</string>
+    <string name="driver_car">Veículo</string>
+    <string name="ride_value">Valor da viagem</string>
+    <string name="driver_comment">Comment</string>
+    <string name="select_this_driver_button">Escolher este motorista</string>
+    <string name="ride_date_information">##/##/## - ##:##</string>
+    <string name="origin">De:</string>
+    <string name="destination">Para:</string>
+    <string name="distance">Distância Percorrida</string>
+    <string name="duration">Tempo Total</string>
+
+    <string-array name="drivers_list">
+        <item>Selecione o motorista</item>
+        <item>Homer Simpson</item>
+        <item>Dominic Toretto</item>
+        <item>James Bond</item>
+        <item>Todos os motoristas</item>
+    </string-array>
 </resources>

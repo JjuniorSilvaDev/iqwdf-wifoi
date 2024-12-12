@@ -1,79 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginHorizontal="10dp"
+    android:layout_margin="10dp"
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="300dp"
+        android:padding="10dp">
 
         <TextView
-            android:id="@+id/dateHistoryFragment"
-            android:layout_width="wrap_content"
+            android:id="@+id/driverNameHistoryFragment"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="##/##/## - ##:##"
-            app:layout_constraintEnd_toStartOf="@id/driverNameHistoryFragment"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/driver_name"
+            app:layout_constraintBottom_toTopOf="@id/originHistoryFragment"
+            app:layout_constraintEnd_toStartOf="@id/dateHistoryFragment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/driverNameHistoryFragment"
-            android:layout_width="wrap_content"
+            android:id="@+id/dateHistoryFragment"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Nome do Motorista"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:text="@string/ride_date_information"
+            app:layout_constraintBottom_toTopOf="@id/destinationHistoryFragment"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/dateHistoryFragment"
+            app:layout_constraintStart_toEndOf="@+id/driverNameHistoryFragment"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/originHistoryFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="De: "
-            app:layout_constraintEnd_toStartOf="@id/driverNameHistoryFragment"
+            android:gravity="center"
+            android:text="@string/origin"
+            app:layout_constraintBottom_toTopOf="@id/distanceTraveledHistoryFragment"
+            app:layout_constraintEnd_toStartOf="@id/destinationHistoryFragment"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dateHistoryFragment" />
+            app:layout_constraintTop_toBottomOf="@+id/driverNameHistoryFragment" />
 
         <TextView
             android:id="@+id/destinationHistoryFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Para: "
-            app:layout_constraintEnd_toStartOf="@id/driverNameHistoryFragment"
+            android:gravity="center"
+            android:text="@string/destination"
+            app:layout_constraintBottom_toTopOf="@id/timeCurrentHistoryFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/originHistoryFragment"
+            app:layout_constraintTop_toBottomOf="@+id/dateHistoryFragment" />
+
+        <TextView
+            android:id="@+id/distanceTraveledHistoryFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/distance"
+            app:layout_constraintBottom_toTopOf="@id/priceHistoryFragment"
+            app:layout_constraintEnd_toStartOf="@id/timeCurrentHistoryFragment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/originHistoryFragment" />
 
         <TextView
-            android:id="@+id/distanceTravelerHistoryFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Distância Percorrida"
-            app:layout_constraintEnd_toStartOf="@id/driverNameHistoryFragment"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/destinationHistoryFragment" />
-
-        <TextView
             android:id="@+id/timeCurrentHistoryFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Tempo Total"
+            android:gravity="center"
+            android:text="@string/duration"
+            app:layout_constraintBottom_toTopOf="@id/priceHistoryFragment"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/dateHistoryFragment"
-            app:layout_constraintTop_toBottomOf="@id/driverNameHistoryFragment" />
+            app:layout_constraintStart_toEndOf="@+id/distanceTraveledHistoryFragment"
+            app:layout_constraintTop_toBottomOf="@+id/destinationHistoryFragment" />
 
         <TextView
             android:id="@+id/priceHistoryFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Valor total"
+            android:gravity="center"
+            android:text="@string/ride_value"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/dateHistoryFragment"
-            app:layout_constraintTop_toBottomOf="@id/timeCurrentHistoryFragment" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/distanceTraveledHistoryFragment" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,5 +8,5 @@ data class EstimateResponse (
     val distance: Double?,
     val duration: String?,
     val options: List<Option>?,
-    val routeResponse: Any? // Pode ser outro objeto se necessário
+    val routeResponse: Any?
 )

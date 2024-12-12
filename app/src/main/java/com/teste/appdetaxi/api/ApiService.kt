@@ -11,7 +11,6 @@ import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiService {
 
@@ -25,5 +24,5 @@ interface ApiService {
 
     // Endpoint GET /ride/{customer_id}
     @GET("/ride/{customer_id}")
-    fun getRides(@Path("customer_id") customerId: String, @Query("driver_id") driverId: String?): Call<GetRidesResponse>
+    fun getRides(@Path("customer_id") customerId: String): Call<GetRidesResponse>
 }

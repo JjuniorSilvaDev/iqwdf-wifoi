@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         >
         <TextView
             android:id="@+id/driverNameFragment"
@@ -17,52 +17,11 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:text="Nome do motorista"
+            android:text="@string/driver_name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/carFragment"
+            app:layout_constraintBottom_toTopOf="@id/descriptionFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/rateFragment"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Avaliação"
-            android:gravity="center"
-            android:padding="2dp"
-            android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@id/driverNameFragment"
-            app:layout_constraintBottom_toTopOf="@id/descriptionFragment"
-            app:layout_constraintEnd_toStartOf="@id/carFragment"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/carFragment"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Veículo"
-            android:gravity="center"
-            android:padding="2dp"
-            app:layout_constraintTop_toBottomOf="@id/driverNameFragment"
-            app:layout_constraintEnd_toStartOf="@id/rideFare"
-            app:layout_constraintBottom_toTopOf="@id/descriptionFragment"
-            app:layout_constraintStart_toEndOf="@id/rateFragment"
-            />
-
-        <TextView
-            android:id="@+id/rideFare"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:gravity="center"
-            android:text="Valor da viagem"
-            android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@id/driverNameFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/carFragment"
-            app:layout_constraintBottom_toTopOf="@id/descriptionFragment"
             />
 
         <TextView
@@ -72,7 +31,62 @@
             android:paddingVertical="2dp"
             android:paddingHorizontal="5dp"
             android:gravity="center"
-            android:text="Description"
+            android:text="@string/driver_description"
+            app:layout_constraintTop_toBottomOf="@id/driverNameFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/carFragment"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/rateFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/driver_rate"
+            android:gravity="center"
+            android:padding="2dp"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@id/descriptionFragment"
+            app:layout_constraintBottom_toTopOf="@id/commentFragment"
+            app:layout_constraintEnd_toStartOf="@id/carFragment"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/carFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/driver_car"
+            android:gravity="center"
+            android:padding="2dp"
+            app:layout_constraintTop_toBottomOf="@id/descriptionFragment"
+            app:layout_constraintEnd_toStartOf="@id/rideValue"
+            app:layout_constraintBottom_toTopOf="@id/commentFragment"
+            app:layout_constraintStart_toEndOf="@id/rateFragment"
+            />
+
+        <TextView
+            android:id="@+id/rideValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:gravity="center"
+            android:text="@string/ride_value"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@id/descriptionFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/carFragment"
+            app:layout_constraintBottom_toTopOf="@id/commentFragment"
+            />
+
+        <TextView
+            android:id="@+id/commentFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp"
+            android:paddingHorizontal="5dp"
+            android:gravity="center"
+            android:text="@string/driver_comment"
             app:layout_constraintTop_toBottomOf="@id/carFragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/chooseDriverButtonFragment"
@@ -83,11 +97,11 @@
             android:id="@+id/chooseDriverButtonFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Escolher Motorista"
+            android:text="@string/select_this_driver_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionFragment" />
+            app:layout_constraintTop_toBottomOf="@id/commentFragment" />
 
 
 

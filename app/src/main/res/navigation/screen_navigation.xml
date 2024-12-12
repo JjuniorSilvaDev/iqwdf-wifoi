@@ -21,11 +21,8 @@
     </fragment>
     <fragment
         android:id="@+id/chooseDriverScreen"
-        android:name="com.teste.appdetaxi.screens.ChooseDriverScreen"
+        android:name="com.teste.appdetaxi.screens.SelectDriverScreen"
         android:label="ChooseDriverScreen" >
-        <action
-            android:id="@+id/action_chooseDriverScreen_self"
-            app:destination="@id/chooseDriverScreen" />
         <action
             android:id="@+id/action_chooseDriverScreen_to_rideFormularyScreen"
             app:destination="@id/rideFormularyScreen" />
